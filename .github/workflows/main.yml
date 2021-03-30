@@ -1,0 +1,28 @@
+name: Relese
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install and Build
+      run: |
+        npm ci
+        npm run build:gh-pages
+      env:
+        CI: true
+
+    - name: Deploy 
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        # cname: virtual-orgel.ver1000000.com

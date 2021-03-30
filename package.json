@@ -1,0 +1,35 @@
+{
+  "name": "virtual-orgel",
+  "version": "0.0.0",
+  "description": "音は記憶、記憶は仮想",
+  "main": "dist/index.js",
+  "scripts": {
+    "preprepareassets": "npx rimraf dist",
+    "prepareassets": "npx cpx 'src/*.{ico,png,html,css}' dist/",
+    "prestart": "npm run prepareassets",
+    "start": "npx esbuild src/index.ts --bundle --sourcemap --outdir=src --servedir=src",
+    "prebuild": "npm run prepareassets",
+    "build": "npx esbuild src/index.ts --bundle --minify --outdir=dist",
+    "build:gh-pages": "npm run build"
+  },
+  "dependencies": {
+    "soundfont-player": "*"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "cpx": "*",
+    "esbuild": "*",
+    "rimraf": "*",
+    "typescript": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ver-1000000/virtual-orgel.git"
+  },
+  "author": "@Ver1000000000",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ver-1000000/virtual-orgel/issues"
+  },
+  "homepage": "https://github.com/ver-1000000/virtual-orgel#readme"
+}
